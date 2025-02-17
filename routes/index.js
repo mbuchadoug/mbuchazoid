@@ -48,6 +48,7 @@ const Expenses = require('../models/expenses')
 const FeesUpdate =require('../models/feesUpdate');
 const StudentSub =require('../models/studentSubject');
 const TeacherSub =require('../models/teacherSubject');
+const StudentDB =require('../models/studentDB');
 const Room =require('../models/room');
 var Quiz = require('../models/quiz');
 const stripe = require('stripe')('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');
@@ -104,7 +105,7 @@ User.find(function(err,docs){
  }
 })*/
 
-const mongoURI = process.env.MONGO_URL ||'mongodb://0.0.0.0:27017/euritDB';
+const mongoURI = process.env.MONGO_URL ||'mongodb://0.0.0.0:27017/smsDB';
 
 const conn = mongoose.createConnection(mongoURI);
 
@@ -154,6 +155,151 @@ const storage = new GridFsStorage({
 
 
 const upload = multer({ storage })
+
+
+
+router.get('/sdb',function(req,res){
+  StudentDB.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      StudentDB.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+})
+router.get('/updateYearFL',function(req,res){
+  Report2.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Report2.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+  Report.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Report.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  Learn.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Learn.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  Fees.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Fees.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  Expenses.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Expenses.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  StudentSub.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      StudentSub.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+  TestX.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      TestX.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+
+  Test.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Test.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  Pass.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Pass.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  PassX.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      PassX.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+  MonthIncome.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      MonthIncome.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+
+  MonthExpense.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      MonthExpense.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+  Stats.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Stats.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+
+})
+
 
 
 router.get('/files', (req, res) => {
@@ -242,7 +388,7 @@ router.get('/image/:fileId', (req, res) => {
     gfs.collection('uploads');
   })
   let fileId = req.params.fileId
-  console.log(fileId,'fileId')
+  console.log(fileId,'fileId33')
   const bucket = new mongodb.GridFSBucket(conn.db,{ bucketName: 'uploads' });
   gfs.files.findOne({ _id: mongodb.ObjectId(fileId) }, (err, file) => {
     // Check if file
@@ -257,7 +403,7 @@ router.get('/image/:fileId', (req, res) => {
       // Read output to browser
 
       console.log(file,'file baba')
-      const readstream = gridfsBucket.openDownloadStream(file._id);
+      const readstream = gridfsBucket.openDownloadStream(fileId);
       readstream.pipe(res);
     } else {
       res.status(404).json({
@@ -282,7 +428,7 @@ router.get('/imageC/:fileId', (req, res) => {
     gfs.collection('uploads');
   })
   let fileId = req.params.fileId
-  console.log(fileId,'fileId')
+  console.log(fileId,'fileId33')
   const bucket = new mongodb.GridFSBucket(conn.db,{ bucketName: 'uploads' });
   gfs.files.findOne({ _id: mongodb.ObjectId(fileId) }, (err, file) => {
     // Check if file

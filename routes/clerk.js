@@ -202,6 +202,80 @@ const storage = new GridFsStorage({
 
 
 const upload = multer({ storage })
+
+
+
+
+
+
+
+
+  
+
+router.get('/updateYearFL',function(req,res){
+  InvoiceSubBatch.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      InvoiceSubBatch.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+
+  InvoiceFiles.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      InvoiceFiles.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+  InvoiceFile.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      InvoiceFile.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+  
+  Stock.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Stock.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+
+  StockV.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      StockV.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+
+
+
+
+})
 // change password
 router.get('/pass',isLoggedIn, (req, res) => {
   var pro = req.user
@@ -12729,8 +12803,8 @@ let filename = 'statement'+'_'+studentName+'.pdf'
   //console.log(form)
 await Axios({
     method: "POST",
-   url: 'https://portal.steuritinternationalschool.org/clerk/uploadStatement',
-    // url: 'http://localhost:9500/clerk/uploadStatement',
+   //url: 'https://portal.steuritinternationalschool.org/clerk/uploadStatement',
+     url: 'http://localhost:9500/clerk/uploadStatement',
     headers: {
       "Content-Type": "multipart/form-data"  
     },

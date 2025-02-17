@@ -34,7 +34,7 @@ var indexRoute= require('./routes/index')
 
 
 var app = express();
-const mongoURI =process.env.MONGO_URL|| 'mongodb://0.0.0.0:27017/euritDB'
+const mongoURI =process.env.MONGO_URL|| 'mongodb://0.0.0.0:27017/smsDB'
 const conn = mongoose.createConnection(mongoURI);
 
 // Init gfs
@@ -45,7 +45,7 @@ conn.once('open', () => {
   gfs = Grid(conn.db, mongoose.mongo);  
   gfs.collection('uploads');
 });
-mongoose.connect(process.env.MONGO_URL ||'mongodb://0.0.0.0:27017/euritDB',{
+mongoose.connect(process.env.MONGO_URL ||'mongodb://0.0.0.0:27017/smsDB',{
   useUnifiedTopology: true ,
   
 } )
@@ -101,7 +101,7 @@ app.use('/', indexRoute);
 
 
 
-const port = process.env.PORT || 9500;
+const port = process.env.PORT || 8500;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

@@ -191,6 +191,152 @@ const upload = multer({ storage })
 
 
 
+
+router.get('/updateYearFL',function(req,res){
+  Attendance.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Attendance.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+  Discipline.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Discipline.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  FloatVoucher.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      FloatVoucher.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+ StudentDisc.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+    StudentDisc.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  Discipline.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Discipline.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  HostelAllo.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      HostelAllo.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+  VouchReport.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      VouchReport.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+
+ VouchStudentReport.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      VouchStudentReport.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  CodeSub.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      CodeSub.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+  CodeDisc.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      CodeDisc.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+ AlloRegBatch.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      AlloRegBatch.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+
+  RoomAllo.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      RoomAllo.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+  RoomAlloSub.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      RoomAlloSub.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+
+
+  StudentDiscReport.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      StudentDiscReport.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+        
+      })
+    }
+  })
+
+})
+
+
+
+
+
 router.get('/genEmail2',isLoggedIn,function(req,res){
   User.find({role:"parent"},function(err,docs){
  
@@ -264,7 +410,7 @@ res.redirect('/records/dash')
 
 
   
-  router.get('/dash',isLoggedIn,records,function(req,res){
+  router.get('/dash',isLoggedIn,function(req,res){
     var pro = req.user
     var errorMsg = req.flash('danger')[0];
     var successMsg = req.flash('success')[0];

@@ -90,7 +90,7 @@ User.find(function(err,docs){
  }
 })*/
 
-const mongoURI =process.env.MONGO_URL||  'mongodb://0.0.0.0:27017/euritDB';
+const mongoURI =process.env.MONGO_URL||  'mongodb://0.0.0.0:27017/smsDB';
 
 const conn = mongoose.createConnection(mongoURI);
 
@@ -136,6 +136,49 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage })
 
+
+
+
+
+router.get('/updateYearFL',function(req,res){
+  Lesson.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Lesson.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+  Question.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Question.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+  Topic.find(function(err,docs){
+    for(var i = 0;i<docs.length;i++){
+      let id = docs[i]._id
+      Topic.findByIdAndUpdate(id,{$set:{year:2025}},function(err,focs){
+
+      })
+    }
+  })
+
+
+
+
+
+
+
+})
 
 router.get('/upload',(req,res)=>{
   res.render('teachers/upl')
